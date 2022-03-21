@@ -21,3 +21,4 @@ class Article(models.Model):
     # dla DateTimeField auto_now_add=True, aby automatycznie była uzupełniania data 
     # przy tworzeniu wpisu
     date = models.DateTimeField(auto_now_add=True)
+
