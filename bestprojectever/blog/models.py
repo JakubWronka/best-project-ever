@@ -16,7 +16,8 @@ class Article(models.Model):
     # jego wpisy wraz z informacją, że był autorem pozostały nieusunięte
     # docelowo pole author powinno być zastąpione linijką poniżej, podstawiając nazwę modelu
     # w miejsce "Client"
-    # author = models.ForeignKey(Client, on_delete=models.DO_NOTHING)
+    # zapoznać się z related_name
+    # author = models.ForeignKey(Client, on_delete=models.DO_NOTHING, related_name='articles')
     author = models.CharField(max_length=255)
     # dla DateTimeField auto_now_add=True, aby automatycznie była uzupełniania data 
     # przy tworzeniu wpisu

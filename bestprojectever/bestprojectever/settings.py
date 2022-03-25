@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'bestprojectever.wsgi.application'
 #   a) utworzyłem bazę danych "best_project_ever_db_01"
 #   b) utworzyłem użytkownika postresowego "best_project_ever_db_user_01" z hasłem "password"
 #   c) ustawiłem encoding na "utf8" - w sumie warto by zadać sobie pytanie: po co?
-#   d) zmieniłem domyślny "transaction isolation schecme" na "read committed" - w sumie warto by zadać sobie pytanie: po co?
+#   d) zmieniłem domyślny "transaction isolation scheme" na "read committed" - w sumie warto by zadać sobie pytanie: po co?
 #   e) zmieniłem timezone na "UTC" - w sumie warto by zadać sobie pytanie: po co?
 #   f) nadałem pełne uprawnienia dotyczące bazy danych "best_project_ever_db_01" dla użytkownika "best_project_ever_db_user_01"
 #   g) zainstalowanie w venvie django psycopg2 uwaga, podczas instalacji pojawiły się błędy, pomogło:
@@ -93,14 +93,14 @@ WSGI_APPLICATION = 'bestprojectever.wsgi.application'
 #       2) dopiero po doinstalowaniu powyższego mogłem wykonać właściwe:
 #          pipenv install django psycopg2 (choć ostatecznie chyba zadziałało dopiero pip install psycopg2, nie wiem dlaczego w tutorialu powyżej było podane pipenv install django psycopg2, po co tam "django"  - nie wiem)
 #   h) w settings.py projektu w DATABASES dodałęm jak poniżej
-#   i) później jeszcze zrobiłem python manage.py createsuperuser
+#   i) później jeszcze zrobiłem python manage.py createsuperuser - ale po co?
 #       1) Python.Maciej.Code@gmail.com
 #       2) user_1
 #       3) password: password
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # czy zadziałało by z ...postgresql ? - zobaczyć z ciekawości
         'NAME': 'best_project_ever_db_01',
         'USER': 'best_project_ever_db_user_01',
         'PASSWORD': 'password',
