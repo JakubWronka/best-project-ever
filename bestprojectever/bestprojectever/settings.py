@@ -25,6 +25,9 @@ SECRET_KEY = 'django-insecure-cic-v!_5+5k%u@@en(ksgt3rb8o^!tz+b7!=yj8th7l@wfrzrm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# tutaj dodałem adres lokalnego hosta (na razie zakomentowałem, 
+# aby zobaczyć czy jest to niezbędne aby działało)
+# ALLOWED_HOSTS = ['127.0.0.1']
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog'
 ]
 
 MIDDLEWARE = [
@@ -73,10 +77,35 @@ WSGI_APPLICATION = 'bestprojectever.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
+# Dodatkowe uwagi:
+# Przed dodaniem bazy postgresql do django:
+# zrobiłem kroki wg instrukcji z: https://medium.com/@rudipy/how-to-connecting-postgresql-with-a-django-application-f479dc949a11
+#   a) utworzyłem bazę danych "best_project_ever_db_01"
+#   b) utworzyłem użytkownika postresowego "best_project_ever_db_user_01" z hasłem "password"
+#   c) ustawiłem encoding na "utf8" - w sumie warto by zadać sobie pytanie: po co?
+#   d) zmieniłem domyślny "transaction isolation scheme" na "read committed" - w sumie warto by zadać sobie pytanie: po co?
+#   e) zmieniłem timezone na "UTC" - w sumie warto by zadać sobie pytanie: po co?
+#   f) nadałem pełne uprawnienia dotyczące bazy danych "best_project_ever_db_01" dla użytkownika "best_project_ever_db_user_01"
+#   g) zainstalowanie w venvie django psycopg2 uwaga, podczas instalacji pojawiły się błędy, pomogło:
+#       1) kroki z https://stackoverflow.com/questions/26053982/setup-script-exited-with-error-command-x86-64-linux-gnu-gcc-failed-with-exit
+#          w szczególności komenda sudo apt-get install libpq-dev python-dev libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev libffi-dev
+#       2) dopiero po doinstalowaniu powyższego mogłem wykonać właściwe:
+#          pipenv install django psycopg2 (choć ostatecznie chyba zadziałało dopiero pip install psycopg2, nie wiem dlaczego w tutorialu powyżej było podane pipenv install django psycopg2, po co tam "django"  - nie wiem)
+#   h) w settings.py projektu w DATABASES dodałęm jak poniżej
+#   i) później jeszcze zrobiłem python manage.py createsuperuser - ale po co?
+#       1) Python.Maciej.Code@gmail.com
+#       2) user_1
+#       3) password: password
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # czy zadziałało by z ...postgresql ? - zobaczyć z ciekawości
+        'NAME': 'best_project_ever_db_01',
+        'USER': 'best_project_ever_db_user_01',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
