@@ -24,8 +24,8 @@ class Article(models.Model):
     # docelowo pole author powinno być zastąpione linijką poniżej, podstawiając nazwę modelu
     # w miejsce "Client"
     # zapoznać się z related_name
-    # author = models.ForeignKey(Client, on_delete=models.DO_NOTHING, related_name='articles')
-    author = models.CharField(max_length=255)
+    author = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, related_name='articles')
+    # author = models.CharField(max_length=255)
     # dla DateTimeField auto_now_add=True, aby automatycznie była uzupełniania data 
     # przy tworzeniu wpisu
     date = models.DateTimeField(auto_now_add=True)
