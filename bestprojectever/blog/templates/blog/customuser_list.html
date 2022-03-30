@@ -1,0 +1,10 @@
+
+{% block content %}
+    <h2>App users:</h2>
+    <ul>
+        {% for customuser in customuser_list %}
+            <li>{{ customuser.username }}</li>
+            <li>{{ customuser.first_name}}, {{customuser.last_name}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

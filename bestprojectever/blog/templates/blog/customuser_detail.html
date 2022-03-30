@@ -1,0 +1,7 @@
+{% block content %}
+    <h2>App user number {{ customuser.pk }}:</h2>
+    <ul>
+            <li>{{ customuser.username }}</li>
+            <li>{{ customuser.first_name}}, {{customuser.last_name}}</li>
+    </ul>
+{% endblock %}

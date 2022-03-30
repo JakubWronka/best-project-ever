@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from .models import CustomUser
 
-# Create your views here.
+class CustomUserListView(ListView):
+    model = CustomUser
+
+class CustomUserDetailView(DetailView):
+    model = CustomUser
