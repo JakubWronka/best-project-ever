@@ -1,10 +1,11 @@
-
 {% block content %}
+    <!-- data in a content block, to make it possible to include it into a base html file, to have a consistent structure -->
     <h2>App users:</h2>
     <ul>
         {% for customuser in customuser_list %}
             <li>{{ customuser.username }}</li>
             <li>{{ customuser.first_name}}, {{customuser.last_name}}</li>
+            <li>---------------------------</li>
         {% endfor %}
     </ul>
 {% endblock %}
