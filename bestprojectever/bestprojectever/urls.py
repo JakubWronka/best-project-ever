@@ -21,3 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),  # including all URL setup from blog/urls.py file, available under blog/ link
     path('__debug__/', include(debug_toolbar.urls)),
+]
