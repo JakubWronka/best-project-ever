@@ -1,0 +1,12 @@
+{% block content %}
+
+    <h1>This is the list of available articles</h1>
+    {% for article in article_list %}
+    <ul>
+        <!-- tutaj odwołuję się do przekazanego w articles_view 
+            z pliku views.py słownika -->
+        <li>{{ article.title}}</li>
+            
+    </ul>
+    {% endfor %}
+{% endblock %}
