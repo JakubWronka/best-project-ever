@@ -1,18 +1,11 @@
-from django.views.generic import ListView, DetailView
+from rest_framework import viewsets
 from .models import CustomUser, Article
+from .serializers import CustomUserSerializer, ArticleSerializer
 
-class CustomUserListView(ListView):
-    # class-based view, inheriting from a ListView class, with model variable set to a CustomUser model
-    # needed to display all CustomUser class objects
-    model = CustomUser
+class CustomUserViewSet(viewsets.ModelViewSet):
+    serializer_class = CustomUserSerializer
+    queryset = CustomUser.objects.all()
 
-class CustomUserDetailView(DetailView):
-    # class-based view, inheriting from a DetailView class, with model variable set to a CustomUser model
-    # needed to display a specific CustomUser class object
-    model = CustomUser
-
-class ArticleListView(ListView):
-    model = Article
-
-class ArticleDetailView(DetailView):
-    model = Article
+class ArticleViewSet(viewsets.ModelViewSet):
+    serializer_class = ArticleSerializer
+    queryset = Article.objects.all()

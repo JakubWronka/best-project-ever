@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'blog',
-    'debug_toolbar'
+    'debug_toolbar',  # I added a comma at the end to not highlight this line in diff when we will add more installed apps
 ]
 
 MIDDLEWARE = [
