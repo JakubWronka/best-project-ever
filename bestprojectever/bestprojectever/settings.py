@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +29,10 @@ DEBUG = True
 # tutaj dodałem adres lokalnego hosta (na razie zakomentowałem, 
 # aby zobaczyć czy jest to niezbędne aby działało)
 # ALLOWED_HOSTS = ['127.0.0.1']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -106,12 +110,12 @@ WSGI_APPLICATION = 'bestprojectever.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # czy zadziałało by z ...postgresql ? - zobaczyć z ciekawości
-        'NAME': 'best_project_ever_db_01',
-        'USER': 'best_project_ever_db_user_01',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql', # czy zadziałało by z ...postgresql ? - zobaczyć z ciekawości
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
