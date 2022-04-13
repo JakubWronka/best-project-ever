@@ -1,14 +1,42 @@
-from dataclasses import field
-from operator import mod
 from rest_framework import serializers
-from .models import CustomUser, Article
+from .models import CustomUser, CustomUserProfile, Article
 
-class CustomUserSerializer(serializers.ModelSerializer):
+class CustomUserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUserProfile
+        fields = ['date_of_birth', 'country', 'city', 'bio', 'photo']
+
+class CustomUserSerializer(serializers.HyperlinkedModelSerializer):
+    profile = CustomUserProfileSerializer(required=True)
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'password', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined', 'date_of_birth', 'bio', 'location']
-        # I got the field names from AbstractBaseUser (password), AbstractUser () and our CustomUser (the rest of the fields) classes
-        # id is a primary key from the database
+        fields = ('url', 'email', 'first_name', 'last_name', 'password', 'profile')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        profile_data = validated_data.pop('profile')
+        password = validated_data.pop('password')
+        user = CustomUser(**validated_data)
+        user.set_password(password)
+        user.save()
+        CustomUserProfile.objects.create(user=user, **profile_data)
+        return user
+
+    def update(self, instance, validated_data):
+        profile_data = validated_data.pop('profile')
+        profile = instance.profile
+
+        instance.email = validated_data.get('email', instance.email)
+        instance.save()
+
+        profile.date_of_birth = profile_data.get('date_of_birth', profile.date_of_birth)
+        profile.country = profile_data.get('country', profile.country)
+        profile.city = profile_data.get('city', profile.city)
+        profile.bio = profile_data.get('bio', profile.bio)
+        profile.photo = profile_data.get('photo', profile.photo)
+        profile.save()
+
+        return instance
 
 class ArticleSerializer(serializers.ModelSerializer):
     author = CustomUserSerializer(read_only=True)
