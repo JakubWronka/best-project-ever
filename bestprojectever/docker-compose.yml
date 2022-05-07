@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      # POSTGRES_DB: postgres
+      POSTGRES_USER: best_project_ever_db_user_01
+      # POSTGRES_USER: postgres
+      # POSTGRES_USER: postgres
+      POSTGRES_DB: best_project_ever_db_01
+      # POSTGRES_DB: best_project_ever_db_01
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+  api:
+    build: .
+    # command: ["./wait-for-it.sh", "db:5432", "--", "python manage.py makemigrations", "&&", "python manage.py migrate", "&&", "python manage.py runserver 0.0.0.0:8000"]
+    # command: ["./wait-for-it.sh", "db:5432", "--" python manage.py makemigrations && python manage.py migrate && echo blablabla && python manage.py runserver 0.0.0.0:8000
+    command: ["sh", "-c", "./docker-entrypoint.sh"]
+    # co zrobic, aby migracja dokonywala sie w momencie jak juz
+    # wszystkie kontenery "chodza"?
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_NAME: best_project_ever_db_01
+      POSTGRES_USER: best_project_ever_db_user_01
+      POSTGRES_PASSWORD: password
+    depends_on:
+      - db
