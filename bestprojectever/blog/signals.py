@@ -8,3 +8,4 @@ def create_article_for_new_user(sender, **kwargs):
         user_number = kwargs['instance'].first_name
         Article.objects.create(author=kwargs['instance'], title='New user added!', 
         content='Next user {user} is added'.format(user=user_number))
+
