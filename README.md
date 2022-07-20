@@ -21,3 +21,7 @@ Useful commands:
 	```
 	docker exec -it <container_id> psql -U best_project_ever_db_user_01 -W best_project_ever_db_01
 	```
+* Clear docker on your local machine:
+	```
+	docker system prune -a
+	```
