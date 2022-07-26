@@ -190,3 +190,14 @@ REST_FRAMEWORK = {
 }
 
 REST_USE_JWT = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ]
+    }
+}
+
+SOCIALACCOUNT_AUTO_SIGNUP = False

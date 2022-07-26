@@ -22,4 +22,5 @@ urlpatterns = [
     path('blog/', include('blog.urls')),  # including all URL setup from blog/urls.py file, available under blog/ link
     path('__debug__/', include(debug_toolbar.urls)),
     path('api-auth/', include('rest_framework.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
