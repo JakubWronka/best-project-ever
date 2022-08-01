@@ -13,7 +13,7 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - ./data/db:/var/lib/postgresql/data
-  api:
+  api: &python
     build: .
     # command: ["./wait-for-it.sh", "db:5432", "--", "python manage.py makemigrations", "&&", "python manage.py migrate", "&&", "python manage.py runserver 0.0.0.0:8000"]
     # command: ["./wait-for-it.sh", "db:5432", "--" python manage.py makemigrations && python manage.py migrate && echo blablabla && python manage.py runserver 0.0.0.0:8000
@@ -28,5 +28,24 @@ services:
       POSTGRES_NAME: best_project_ever_db_01
       POSTGRES_USER: best_project_ever_db_user_01
       POSTGRES_PASSWORD: password
+      # CELERY_BROKER=
     depends_on:
       - db
+      - rabbitmq
+      - celery_worker
+  rabbitmq:
+    image: rabbitmq:3.7-alpine
+  celery_worker:
+    <<: *python
+    command: celery -A bestprojectever worker -l info --pool=solo
+    # command: bash -c "celery -A bestprojectever worker -l info --pool=solo && celery -A bestprojectever worker -B"
+    ports: []
+    depends_on:
+      - rabbitmq
+      - db
+  celery-beat:
+    <<: *python
+    command: celery -A bestprojectever beat -l info
+    ports: []
+    depends_on:
+      - rabbitmq
