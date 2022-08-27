@@ -3,7 +3,9 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from .models import CustomUser, Article
 from .serializers import CustomUserSerializer, ArticleSerializer
+
 from .permissions import IsLoggedInUserOrAdmin, IsAdminUser
+
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     serializer_class = CustomUserSerializer
@@ -19,6 +21,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
             permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
 
+
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
@@ -32,3 +35,6 @@ class ArticleViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, pk=None, *args, **kwargs):
         response = super(ArticleViewSet, self).retrieve(request, pk, *args, **kwargs)
         return Response({'article': response.data}, template_name='blog/article_detail.html')
+
+
+

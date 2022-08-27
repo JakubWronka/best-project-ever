@@ -1,0 +1,13 @@
+Hello {{name|safe}}
+
+Recommended last three articles for you:
+{{last_article_1_title|safe}}
+{{last_article_1_content|safe}}
+
+{{last_article_2_title|safe}}
+{{last_article_2_content|safe}}
+
+{{last_article_3_title|safe}}
+{{last_article_3_content|safe}}
+
+Thank you!
