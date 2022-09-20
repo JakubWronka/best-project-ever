@@ -1,12 +1,18 @@
 from concurrent.futures.process import BrokenProcessPool
 import graphene
-from graphene_django import DjangoObjectType
-from .models import Article, CustomUserProfile
+from graphene_django import DjangoObjectType, DjangoListField
+from .models import Article, CustomUserProfile, CustomUser
 
 class ArticlesType(DjangoObjectType):
     class Meta:
         model = Article
-        fields = ('title', 'content')
+        fields = ('title', 'author', 'date')
+
+class CustomUsersType(DjangoObjectType):
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'username', 'first_name')
+
 
 
 class Query(graphene.ObjectType):
