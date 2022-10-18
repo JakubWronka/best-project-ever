@@ -1,7 +1,6 @@
-from concurrent.futures.process import BrokenProcessPool
 import graphene
-from graphene_django import DjangoObjectType, DjangoListField
-from .models import Article, CustomUserProfile, CustomUser
+from graphene_django import DjangoObjectType
+from .models import Article, CustomUser
 
 class ArticlesType(DjangoObjectType):
     class Meta:
