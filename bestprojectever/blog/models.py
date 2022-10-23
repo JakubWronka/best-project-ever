@@ -44,4 +44,4 @@ class Article(models.Model):
     # author = models.CharField(max_length=255)
     # dla DateTimeField auto_now_add=True, aby automatycznie była uzupełniania data 
     # przy tworzeniu wpisu
-    date = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
