@@ -4,7 +4,7 @@ from django.conf import settings
 
 class CustomUser(AbstractUser):
     username = models.CharField(blank=True, null=True, max_length=50)
-    # Overwrtiting to available having a blank username, because the email field will be the main field 
+    # Overwrtiting to make it available to have a blank username, because the email field will be the main field 
     # used for authentication, for easier maintenanace
     email = models.EmailField('email address', unique=True)  
     # We have to overwrite this field from an AbstractUser model, 
