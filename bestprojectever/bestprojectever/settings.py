@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    "graphene_django",
+    'drf_yasg',
 ]
 
 SITE_ID = 1
@@ -211,8 +213,7 @@ SOCIALACCOUNT_AUTO_SIGNUP = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'maciejpafere@gmail.com'
-EMAIL_HOST_PASSWORD = 'hsvemzjyoyisedm'
+EMAIL_HOST_PASSWORD = 'mock_password'   # password shared by another communication channel
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'maciejpafere@gmail.com'
-
