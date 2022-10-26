@@ -23,7 +23,6 @@ class CustomUserSerializer(serializers.HyperlinkedModelSerializer):
         return user
 
     def update(self, instance, validated_data):
-        # how to update password?
         profile_data = validated_data.pop('profile')
         profile = instance.profile
 

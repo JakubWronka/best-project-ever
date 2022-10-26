@@ -2,12 +2,6 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser, CustomUserProfile, Article
 
-# Created superuser: 
-# Email address: jakub@wronka.pl
-# Username: jakub1
-# First name: Jakub
-# Last name: Wronka
-# Password: james
 
 class CustomUserProfileInline(admin.StackedInline):
     # This class is created to display the CustomUserProfile class within (inline) the CustomUser class in the admin

@@ -29,7 +29,6 @@ class ArticleViewSet(viewsets.ModelViewSet):
     
     def list(self, request, *args, **kwargs):
         response = super(ArticleViewSet, self).list(request, *args, **kwargs)
-        #if request.accepted_renderer.format == 'html':
         return Response({'article_list': response.data}, template_name='blog/article_list.html')
 
     def retrieve(self, request, pk=None, *args, **kwargs):
