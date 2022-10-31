@@ -8,5 +8,4 @@ python manage.py loaddata dumped_db.json
 echo "Initial state of database from file 'dumped_db.json has been loaded"
 python manage.py runserver 0.0.0.0:8000
 
-
 echo "Finishing docker-entrypoint script"
