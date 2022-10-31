@@ -1,17 +1,19 @@
 import graphene
 from graphene_django import DjangoObjectType
+
 from .models import Article, CustomUser
+
 
 class ArticlesType(DjangoObjectType):
     class Meta:
         model = Article
-        fields = ('title', 'author', 'date')
+        fields = ("title", "author", "date")
+
 
 class CustomUsersType(DjangoObjectType):
     class Meta:
         model = CustomUser
-        fields = ('id', 'username', 'first_name')
-
+        fields = ("id", "username", "first_name")
 
 
 class Query(graphene.ObjectType):
@@ -19,5 +21,6 @@ class Query(graphene.ObjectType):
 
     def resolve_all_articles(root, info):
         return Article.objects.all()
+
 
 schema = graphene.Schema(query=Query)
