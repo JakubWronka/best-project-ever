@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   db:
-    image: postgres
+    image: postgres:14
     restart: always
     environment:
       POSTGRES_USER: best_project_ever_db_user_01
