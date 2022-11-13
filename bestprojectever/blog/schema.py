@@ -7,7 +7,7 @@ from .models import Article, CustomUser
 class ArticlesType(DjangoObjectType):
     class Meta:
         model = Article
-        fields = ("title", "author", "date")
+        fields = ("title", "author", "created_at")
 
 
 class CustomUsersType(DjangoObjectType):
