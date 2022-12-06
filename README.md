@@ -25,3 +25,11 @@ Useful commands:
 	```
 	docker system prune -a
 	```
+* Run test coverage:
+	```
+	coverage run --source=. manage.py test -v 2
+	```
+* Generate testing report:
+	```
+	coverage html
+	```

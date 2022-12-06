@@ -27,3 +27,4 @@ sqlparse==0.4.2
 urllib3==1.26.9
 sqlparse==0.4.2
 graphene-django>=2.0
+coverage==6.5.0
