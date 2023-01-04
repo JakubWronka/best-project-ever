@@ -7,6 +7,6 @@ class CustomUserTestCase(TestCase):
         CustomUser.objects.create(email="test@test.com", first_name="John", last_name="Doe")
 
     def test_custom_user_str_method(self):
-        user_john_doe = CustomUser.objects.get(email="test@test.com", first_name="John", last_name="Doe")
+        user_john_doe = CustomUser.objects.get(email="test@test.com")
         self.assertTrue(isinstance(user_john_doe, CustomUser))
         self.assertEqual(user_john_doe.__str__(), user_john_doe.email)
